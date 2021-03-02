@@ -10,7 +10,7 @@ export default function Enter(){
     const[name,setName] = useState("");
 
     const handlesNavigation=()=>{
-        alert("alou")
+       
         navigation.navigate("Chat",{name})
     }
     const onSubmit =useCallback((value=String)=>{
