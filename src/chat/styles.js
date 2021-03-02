@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     },
     chatStyle:{
         backgroundColor:COLOR_THEMA_3,        
-        height:hp(85)
+
 
     }
  

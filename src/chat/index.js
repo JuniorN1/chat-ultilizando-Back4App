@@ -86,7 +86,7 @@ export default function Chat() {
         <GiftedChat
             messages={messages}
             onSend={messages => onSend(messages)}
-            minComposerHeight={80}
+           
             
             messagesContainerStyle={
                 styles.chatStyle
