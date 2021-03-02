@@ -7,17 +7,21 @@ import styles from './styles.js';
 export default function Enter(){
     return(
         <SafeAreaView style={styles.container}>
-            <View>
+            <View  style={styles.imageContainer}>
                 <Image source={logo} />
             </View>
             <View>
-                <Text>Entre com seu nome:</Text>
+                <Text style={styles.labelInputContainer}>Entre com seu nome:</Text>
                 <View style={styles.inputContainer}>
-                    <FontAwesome name="user" size={24} color="#5a38fd" />
-                    <TextInput style={styles.inputEnter} placeholder="Nome do Usuario:" />
+                    <FontAwesome name="user" style={styles.iconInputContainer} />
+                    <TextInput 
+                        style={styles.inputEnter} 
+                        placeholder="Nome do Usuario"
+                        placeholderTextColor="#4a1fff" 
+                    />
                 </View>
-                <TouchableOpacity>
-                    <Text>Entrar</Text>
+                <TouchableOpacity style={styles.buttonEnter}>
+                    <Text style={styles.textEnterButton}>Entrar</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
