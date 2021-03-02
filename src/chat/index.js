@@ -4,7 +4,7 @@ import { Image, Linking, ScrollView, Text, TextInput, TouchableOpacity, View } f
 import { GiftedChat } from 'react-native-gifted-chat'
 import { AsyncStorage } from 'react-native';
 import Parse from 'parse/react-native.js';
-export default function App() {
+export default function Chat() {
   const [messages, setMessages] = useState([]);
 
  

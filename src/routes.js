@@ -8,7 +8,7 @@ import Chat from './chat';
 export default function App() {
     return (
         <NavigationContainer >
-            <StatusBar hidden={false}/>
+            <StatusBar hidden={true}/>
             <Navigator screenOptions={{headerShown:false}}>
                 <Screen component={Enter} name="Enter"/>
                 <Screen component={Chat} name="Chat"/>
