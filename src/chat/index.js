@@ -4,8 +4,11 @@ import { Image, Linking, ScrollView, Text, TextInput, TouchableOpacity, View } f
 import { GiftedChat } from 'react-native-gifted-chat'
 import { AsyncStorage } from 'react-native';
 import Parse from 'parse/react-native.js';
+import { useRoute } from '@react-navigation/native';
 export default function Chat() {
-  const [messages, setMessages] = useState([]);
+    const router = useRoute();
+    const [messages, setMessages] = useState([]);
+    const name = router.params.name;
 
  
  
@@ -22,10 +25,11 @@ export default function Chat() {
     let query = new Parse.Query("message");
 
     query.ascending("createdAt");
+    query.notEqualTo("name",name)
     query.limit(1);
 
     let subscription =Client.subscribe(query);
-       
+
 
     subscription.on("create",messageParse=>{
    
@@ -35,8 +39,8 @@ export default function Chat() {
         createdAt: new Date(),
         text:messageParse.get("text"),
         user:{
-            _id: "123",
-            name:"teste",
+            _id: messageParse.get("name"),
+            name:messageParse.get("name"),
             avatar:"https://img.icons8.com/cute-clipart/64/000000/user-male.png"
           },
 
@@ -53,16 +57,16 @@ export default function Chat() {
   const onSend = useCallback((messages = []) => {
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages));
 
-  
     const Chats = Parse.Object.extend("message");
     const chat = new Chats();
 
     chat.set("text",messages[0].text);
-    chat.set("id",1);
+    chat.set("name",name);
+
     chat.save()
     .then((object) => {
       // Success
-      console.log('New object created with objectId: ' + object.id);
+    //   console.log('New object created with objectId: ' + object.id);
     }, (error) => {
       // Save fails
       alert('Failed to create new object, with error code: ' + error.message);
