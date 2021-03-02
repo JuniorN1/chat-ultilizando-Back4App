@@ -1,41 +1,9 @@
 
-import React, { useState, useCallback, useEffect } from 'react';
-import { Image, Linking, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat'
-import { AsyncStorage } from 'react-native';
-import Parse from 'parse/react-native.js';
+import React from 'react';
+import Routes from './src/routes.js'
 export default function App() {
-  const [messages, setMessages] = useState([]);
-
- 
-  Parse.setAsyncStorage(AsyncStorage);
-  Parse.initialize("ZdeOc2OKVbRCLb8wiUHEa6oWxRCjrf3pY89xLuEm","Fe1Bn8OxU2Q8Az0EuzHPctZfK0i3KgXnkNDHSxuW"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
-  Parse.serverURL = 'https://parseapi.back4app.com/';
-  const onSend = useCallback((messages = []) => {
-    setMessages(previousMessages => GiftedChat.append(previousMessages, messages));
-
-  
-    const Chats = Parse.Object.extend("message");
-    const chat = new Chats();
-
-    chat.set("text",messages[0].text);
-    chat.save()
-    .then((object) => {
-      // Success
-      console.log('New object created with objectId: ' + object.id);
-    }, (error) => {
-      // Save fails
-      alert('Failed to create new object, with error code: ' + error.message);
-    });
-  }, [])
-
   return (
-    <GiftedChat
-      messages={messages}
-      onSend={messages => onSend(messages)}
-      user={{
-        _id: 1,
-      }}
-    />
-  )
+    
+    <Routes/>
+  );
 }
