@@ -5,6 +5,9 @@ import { GiftedChat } from 'react-native-gifted-chat'
 import { AsyncStorage } from 'react-native';
 import Parse from 'parse/react-native.js';
 import { useRoute } from '@react-navigation/native';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+
+import styles from './styles.js';
 export default function Chat() {
     const router = useRoute();
     const [messages, setMessages] = useState([]);
@@ -69,19 +72,30 @@ export default function Chat() {
     //   console.log('New object created with objectId: ' + object.id);
     }, (error) => {
       // Save fails
-      alert('Failed to create new object, with error code: ' + error.message);
+    //   alert('Failed to create new object, with error code: ' + error.message);
     });
   }, [])
  
   return (
       <>
+
+        <View style={styles.header}>
+        {/* <MaterialCommunityIcons name="exit-run" size={24} color="black" /> */}
+            <Text style={styles.textHeader}>Bem-vindo</Text>
+        </View>
         <GiftedChat
             messages={messages}
             onSend={messages => onSend(messages)}
+            minComposerHeight={80}
+            
+            messagesContainerStyle={
+                styles.chatStyle
+            }
             user={{
                 _id: name,
             }}
         />
+
     </>
   )
 }
