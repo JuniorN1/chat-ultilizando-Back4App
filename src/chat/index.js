@@ -18,9 +18,9 @@ export default function Chat() {
 
   useEffect(() => {
     const Client = new Parse.LiveQueryClient({
-      applicationId:"ZdeOc2OKVbRCLb8wiUHEa6oWxRCjrf3pY89xLuEm",
-      serverURL:"wss://charts.b4a.io",
-      javaScriptKey:"Fe1Bn8OxU2Q8Az0EuzHPctZfK0i3KgXnkNDHSxuW"
+      applicationId:process.env.KeyApp,
+      serverURL:process.env.serverURL,
+      javaScriptKey:process.env.javaScriptKey
     });
     
     Client.open();
@@ -55,7 +55,7 @@ export default function Chat() {
   }, []);
 
   Parse.setAsyncStorage(AsyncStorage);
-  Parse.initialize("ZdeOc2OKVbRCLb8wiUHEa6oWxRCjrf3pY89xLuEm","Fe1Bn8OxU2Q8Az0EuzHPctZfK0i3KgXnkNDHSxuW"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+  Parse.initialize(process.env.KeyApp,process.env.javaScriptKey); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
   Parse.serverURL = 'https://parseapi.back4app.com/';
   const onSend = useCallback((messages = []) => {
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages));
@@ -68,11 +68,11 @@ export default function Chat() {
 
     chat.save()
     .then((object) => {
-      // Success
+   
     //   console.log('New object created with objectId: ' + object.id);
     }, (error) => {
-      // Save fails
-    //   alert('Failed to create new object, with error code: ' + error.message);
+ 
+    //   console.log('Failed to create new object, with error code: ' + error.message);
     });
   }, [])
  
