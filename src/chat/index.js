@@ -74,12 +74,14 @@ export default function Chat() {
   }, [])
  
   return (
-    <GiftedChat
-      messages={messages}
-      onSend={messages => onSend(messages)}
-      user={{
-        _id: 1,
-      }}
-    />
+      <>
+        <GiftedChat
+            messages={messages}
+            onSend={messages => onSend(messages)}
+            user={{
+                _id: name,
+            }}
+        />
+    </>
   )
 }
